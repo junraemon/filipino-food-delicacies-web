@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from './../shared/shared.module';
-import { CategoryRoutingModule, CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent } from './categories-routing.route';
+import { CategoryRoutingModule, CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent, CategoryUpdateComponent } from './categories-routing.route';
 import { CategoriesSharedModule } from './shared/categories-shared.module';
 import { RecipesSharedModule } from './../recipes/shared/recipes-shared.module';
 
@@ -17,6 +17,6 @@ import { RecipesSharedModule } from './../recipes/shared/recipes-shared.module';
     CategoriesSharedModule,
     RecipesSharedModule
   ],
-  declarations: [CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent]
+  declarations: [CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent, CategoryUpdateComponent]
 })
 export class CategoriesModule { }

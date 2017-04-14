@@ -9,12 +9,12 @@ import { AuthService } from './auth/services/auth.service';
 })
 export class AppComponent {
   currentRoute: any;
-  constructor(private auth: AuthService, private _router: Router) {
-    _router.events.subscribe((url: any) => this.currentRoute = url.url);
+  constructor(private auth: AuthService, private router: Router) {
+    router.events.subscribe((url: any) => this.currentRoute = url.url);
   }
 
   signOut(): void {
-    this.auth.signOut();
+    this.auth.signOut().then(_ => this.router.navigate(['/sign-in']));
   }
 
   signIn(): void {

@@ -49,7 +49,7 @@ export class AuthService {
     return this.signIn(AuthProviders.Facebook);
   }
 
-  signOut(): void {
-    this.auth$.logout();
+  signOut() {
+    return this.auth$.logout();
   }
 }

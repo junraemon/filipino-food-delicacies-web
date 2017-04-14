@@ -53,7 +53,7 @@ export class RecipeListSharedComponent implements OnInit {
   }
 
   delete(recipe) {
-    let conf = prompt("Are you sure you want to delete this? Type CONFIRM to delete: " + recipe.name, "");
+    let conf = prompt("Are you sure you want to delete " + recipe.name + "?\nType CONFIRM to delete.");
     if (conf == "CONFIRM") {
       this.recipeService.removeRecipe(recipe);
     }

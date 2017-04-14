@@ -27,7 +27,7 @@ export class MediaListComponent implements OnInit {
   }
 
   delete(media: any) {
-    let conf = confirm("Are you sure you want to delete? " + media.name);
+    let conf = confirm("Are you sure you want to delete " + media.name + "?");
 
     if (conf) {
       this.mediaService.removeMedia(media);

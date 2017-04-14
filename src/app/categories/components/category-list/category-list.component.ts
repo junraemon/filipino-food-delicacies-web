@@ -43,8 +43,8 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
-  delete(category) {
-    let conf = prompt("Are you sure you want to delete this? Type CONFIRM to delete", "");
+  delete(category: Category) {
+    let conf = prompt("Are you sure you want to delete " + category.name + "?\nType CONFIRM to delete.");
     if (conf == "CONFIRM") {
       this.categoryService.removeCategory(category);
     }

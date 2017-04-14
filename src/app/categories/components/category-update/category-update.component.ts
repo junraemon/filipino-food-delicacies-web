@@ -51,7 +51,12 @@ export class CategoryUpdateComponent implements OnInit {
   }
 
   update() {
-    this.categoryService.updateCategory(this.categoryId, this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
+    if (this.categoryForm.valid) {
+      this.categoryService.updateCategory(this.categoryId, this.categoryForm.value)
+        .then(_ => this.router.navigate(['/categories']));
+    } else {
+      alert("Some fields are empty");
+    }
   }
 
   selectImage(media) {

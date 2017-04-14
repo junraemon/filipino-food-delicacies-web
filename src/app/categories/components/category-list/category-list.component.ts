@@ -15,11 +15,13 @@ export class CategoryListComponent implements OnInit {
   categoryLoaded: Array<Category> = [];
 
   constructor(private categoryService: CategoryService) {
-    this.categoryService.categories$.subscribe(snapshots => {
-      this.isLoaded = true;
-      this.categoryList = snapshots;
-      this.categoryLoaded = snapshots;
-    });
+    this.categoryService.categories$
+      .map((arr) => arr.reverse())
+      .subscribe(snapshots => {
+        this.isLoaded = true;
+        this.categoryList = snapshots;
+        this.categoryLoaded = snapshots;
+      });
   }
 
   ngOnInit() {

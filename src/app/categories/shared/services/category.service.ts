@@ -13,7 +13,11 @@ export class CategoryService {
   public categories$: FirebaseListObservable<Category[]>;
 
   constructor(private af: AngularFire) {
-    this.categories$ = af.database.list(this.path);
+    this.categories$ = af.database.list(this.path, {
+      query: {
+        orderByChild: 'date',
+      }
+    });
   }
 
   getCategory(id) {

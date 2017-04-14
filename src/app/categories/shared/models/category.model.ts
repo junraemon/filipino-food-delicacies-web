@@ -3,4 +3,5 @@ export class Category {
    name: string;
    imageUrl: string;
    description: string;
+   date: any;
 }

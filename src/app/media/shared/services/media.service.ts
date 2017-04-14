@@ -8,19 +8,25 @@ import * as _ from 'lodash';
 export class MediaService {
 
   private IMAGES_FOLDER: string = 'images';
+  mediaList$: FirebaseListObservable<any[]>;
   storageRef: any;
   constructor(public af: AngularFire) {
     this.storageRef = firebase.storage().ref();
+    this.mediaList$ = this.af.database.list(`/${this.IMAGES_FOLDER}`, {
+      query: {
+        orderByChild: 'date',
+      }
+    });
   }
 
   listMedia(): FirebaseListObservable<any[]> {
-    return this.af.database.list(`/${this.IMAGES_FOLDER}`);
+    return this.mediaList$;
   }
 
   removeMedia(media) {
     let deleteRef = this.storageRef.child(`${this.IMAGES_FOLDER}/${media.name}`);
     deleteRef.delete().then(() => {
-      this.af.database.list(`/${this.IMAGES_FOLDER}`).remove(media.$key);
+      this.mediaList$.remove(media.$key);
     })
   }
 
@@ -37,7 +43,11 @@ export class MediaService {
         () => {
           item.url = uploadTask.snapshot.downloadURL;
           item.isUploading = false;
-          this.saveImage({ name: item.file.name, url: item.url });
+          this.saveImage({
+            name: item.file.name,
+            url: item.url,
+            date: firebase.database.ServerValue.TIMESTAMP
+          });
         }
       );
 

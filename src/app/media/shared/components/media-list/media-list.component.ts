@@ -10,13 +10,17 @@ import { MediaService } from './../../services/media.service';
 })
 export class MediaListComponent implements OnInit {
 
-  medias: Observable<any[]>;
+  media$: Observable<any>;
+  mediaList: any[]
   @Input() modalMode: boolean = false;
   @Input() selected: string = "";
   @Output() selectMedia = new EventEmitter(false);
 
   constructor(private mediaService: MediaService) {
-    this.medias = this.mediaService.listMedia().map( (arr) => { return arr.reverse(); } );;
+    this.media$ = this.mediaService.listMedia().map((arr) => arr.reverse());
+    this.media$.subscribe(snapshot => {
+      this.mediaList = snapshot;
+    });
   }
 
   ngOnInit() {

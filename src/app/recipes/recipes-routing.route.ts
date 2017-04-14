@@ -7,12 +7,12 @@ import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.
 import { AuthGuard } from './../auth/services/auth-guard.service';
 
 const routes: Routes = [
-   { path: 'recipe/edit', redirectTo: 'recipes' },
-   { path: 'recipe/details', redirectTo: 'recipes' },
    { path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard] },
    { path: 'recipe/add', component: RecipeCreateComponent, canActivate: [AuthGuard] },
    { path: 'recipe/edit/:id', component: RecipeUpdateComponent, canActivate: [AuthGuard] },
    { path: 'recipe/details/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard] },
+   { path: 'recipe/edit', redirectTo: 'recipes' },
+   { path: 'recipe/details', redirectTo: 'recipes' },
 ];
 
 export const RecipeRoutingModule = RouterModule.forChild(routes);

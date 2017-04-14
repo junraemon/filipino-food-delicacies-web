@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule, RouterModule.forRoot([], { useHash: false }),
+    BrowserModule, FormsModule, HttpModule, RouterModule.forRoot([{ path: '**', redirectTo: '/' }], { useHash: false }),
     AuthModule, CategoriesModule, CoreModule, FirebaseModule, HomeModule, MediaModule, RecipesModule,
   ],
   bootstrap: [AppComponent]

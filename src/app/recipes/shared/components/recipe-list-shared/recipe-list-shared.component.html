@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-8">
+    <a routerLink="/recipe/add" class="btn btn-primary"><i class="fa fa-plus fa-fw"></i> add new recipe</a>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="searchString" (ngModelChange)="search()" placeholder="Search  a recipe...">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" (click)="search()" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+      </span>
+    </div>
+  </div>
+</div>
+<br/>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th width="20%">Recipe</th>
+      <th width="5%">Image</th>
+      <th width="10%">Category</th>
+      <th width="45%">Introduction</th>
+      <th width="19%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="!isLoaded">
+      <td colspan="5" class="text-center">
+        <strong>Fetching data..</strong> Please wait.
+      </td>
+    </tr>
+    <tr *ngIf="(!recipeList.length && isLoaded)">
+      <td colspan="5" class="text-center">
+        <strong>Oops!</strong> No Results.
+      </td>
+    </tr>
+    <tr *ngFor="let recipe of recipeList">
+      <td><strong>{{ recipe.name }}</strong></td>
+      <td><img [src]="recipe.imageUrl" class="img-fluid rounded" /></td>
+      <td>
+        <span *ngFor="let category of recipe.categories" class="badge badge-default">
+            {{ category  | categoryAsync:"name" | async }}
+        </span>
+      </td>
+      <td>{{ recipe.shortIntro | truncate:100 }}</td>
+      <td class="text-right">
+        <a routerLink="/recipe/details/{{recipe.$key}}" class="btn btn-primary"><i class="fa fa-eye fa-fw"></i> view</a>
+        <a routerLink="/recipe/edit/{{recipe.$key}}" class="btn btn-warning"><i class="fa fa-edit fa-fw"></i> edit</a>
+        <button (click)="delete(recipe)" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

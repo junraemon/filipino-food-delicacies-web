@@ -1,0 +1,29 @@
+<div class="container text-center" *ngIf="!isLoaded">
+  <br/> <br/> Loading...
+</div>
+<div class="container-fluid " *ngIf="isLoaded">
+  <div class="text-right">
+    <a routerLink="/category-edit/{{category.$key}}" class="btn btn-warning btn-small"><i class="fa fa-edit fa-fw"></i> edit</a>
+    <button (click)="delete(category)" class="btn btn-danger btn-small"><i class="fa fa-trash fa-fw"></i> delete</button>
+    <a routerLink="/categories" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
+  </div>
+  <br/>
+  <div class="card">
+    <div class="card-img-top" style="overflow:hidden;height:300px;">
+      <img [src]="category.imageUrl" alt="" class="img-fluid" width="100%" />
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">
+        {{category.name}}
+      </h4>
+      <p class="card-text">{{category.description}}</p>
+      <hr/>
+      <div>
+        <recipe-list-shared [categoryId]="category.$key"></recipe-list-shared>
+      </div>
+    </div>
+    <div class="card-block text-right">
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-8">
+    <a routerLink="/category/add" class="btn btn-primary"><i class="fa fa-plus fa-fw"></i>  add new category</a>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="searchString" (ngModelChange)="search()" placeholder="Search  a category...">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" (click)="search()" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+      </span>
+    </div>
+  </div>
+</div>
+<br/>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th width="20%">Category Name</th>
+      <th width="5%">Image</th>
+      <th width="55%">Description</th>
+      <th width="16%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="!isLoaded">
+      <td colspan="5" class="text-center">
+        <strong>Fetching data..</strong> Please wait.
+      </td>
+    </tr>
+    <tr *ngIf="(!categoryList.length && isLoaded)">
+      <td colspan="5" class="text-center">
+        <strong>Oops!</strong> No Results.
+      </td>
+    </tr>
+    <tr *ngFor="let category of categoryList">
+      <td scope="row"> <strong>{{ category.name }}</strong> </td>
+      <td scope="row"> <img [src]="category.imageUrl" class="img-fluid rounded" /> </td>
+      <td>{{ category.description | truncate:120 }}</td>
+      <td class="text-right">
+        <a routerLink="/category/details/{{category.$key}}" class="btn btn-primary btn-small"><i class="fa fa-eye fa-fw"></i> view</a>
+        <a routerLink="/category/edit/{{category.$key}}" class="btn btn-warning btn-small"><i class="fa fa-edit fa-fw"></i> edit</a>
+        <button (click)="delete(category)" class="btn btn-danger btn-small"><i class="fa fa-trash fa-fw"></i> delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

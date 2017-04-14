@@ -1,0 +1,12 @@
+<div class="card-columns">
+  <div class="card" *ngFor="let media of medias | async">
+    <img class="card-img-top img-fluid" [src]="media.url" [alt]="media.name" width="100%" />
+    <div class="card-block">
+      <p class="card-text text-truncate" style="font-size:13px;">{{media.name}}</p>
+      <div class="text-right">
+        <a [href]="media.url" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        <button (click)="delete(media)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

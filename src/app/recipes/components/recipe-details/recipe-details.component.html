@@ -1,0 +1,31 @@
+<div class="container text-center" *ngIf="!isLoaded">
+  <br/> <br/> Loading...
+</div>
+<div class="container" *ngIf="isLoaded">
+  <div class="text-right">
+    <a routerLink="/recipes" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
+  </div>
+  <br/>
+  <div class="card">
+    <div class="card-img-top" style="overflow:hidden;height:300px;">
+      <img [src]="recipe.imageUrl" alt="" class="img-fluid" width="100%" />
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">
+        {{recipe.name}}
+        <span class="badge badge-primary" style="padding:7px;font-size:13px;" *ngFor="let category of recipe.categories">
+          {{ category | categoryAsync:"name" | async }}
+        </span>
+      </h4>
+      <p class="card-text">{{recipe.shortIntro}}</p>
+      <hr/>
+      <p class="card-text" [innerHtml]="recipe.details"></p>
+    </div>
+    <div class="card-block text-right">
+      <a routerLink="/recipes" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
+      <a routerLink="/recipe/edit/{{recipe.$key}}" class="btn btn-warning btn-small"><i class="fa fa-edit fa-fw"></i> edit</a>
+      <button (click)="delete(recipe)" class="btn btn-danger btn-small"><i class="fa fa-trash fa-fw"></i> delete</button>
+    </div>
+  </div>
+</div>
+<br/>

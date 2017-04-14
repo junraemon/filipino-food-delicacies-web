@@ -1,3 +1,5 @@
-<h1>
-  {{title}}
-</h1>
+<core-app-header [authenticated]="auth.authenticated" (signOut)="signOut()" (signIn)="signIn()" [currentRoute]="currentRoute"></core-app-header>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

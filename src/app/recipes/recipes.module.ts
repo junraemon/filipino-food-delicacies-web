@@ -6,7 +6,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { SharedModule } from './../shared/shared.module';
 import { RecipesSharedModule } from './shared/recipes-shared.module';
-import { RecipeRoutingModule, RecipeListComponent, RecipeCreateComponent, RecipeDetailsComponent } from './recipes-routing.route';
+import { RecipeRoutingModule, RecipeListComponent, RecipeCreateComponent, RecipeDetailsComponent, RecipeUpdateComponent } from './recipes-routing.route';
 
 const tinymceConfig = {
   menubar: false,
@@ -28,6 +28,6 @@ const tinymceConfig = {
     RecipeRoutingModule,
     RecipesSharedModule
   ],
-  declarations: [RecipeListComponent, RecipeCreateComponent, RecipeDetailsComponent]
+  declarations: [RecipeListComponent, RecipeCreateComponent, RecipeDetailsComponent, RecipeUpdateComponent]
 })
 export class RecipesModule { }

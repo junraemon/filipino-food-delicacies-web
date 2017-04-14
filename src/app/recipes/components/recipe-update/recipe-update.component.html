@@ -1,0 +1,48 @@
+<div class="container text-center" *ngIf="!isLoaded">
+  <br/> <br/> Loading...
+</div>
+<div class="container" *ngIf="isLoaded">
+  <div class="card">
+    <h4 class="card-header">Edit Recipe</h4>
+    <div class="card-block">
+
+      <form [formGroup]="recipeForm" (ngSubmit)="update()">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name" class="form-label"><strong>Name</strong></label>
+              <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Recipe Name" required/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name" class="form-label"><strong>Categories</strong></label>
+              <ss-multiselect-dropdown [options]="categories" [texts]="myTexts" [settings]="mySettings" formControlName="categories" required></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl" class="form-label"><strong>Image URL</strong></label>
+          <input type="text" class="form-control" id="imageUrl" name="imageUrl" formControlName="imageUrl" placeholder="URL of the Image"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="shortIntro" class="form-label"><strong>Short Introduction</strong></label>
+          <textarea class="form-control" id="shortIntro" name="shortIntro" formControlName="shortIntro" placeholder="Short Introduction"
+            rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="introduction"><strong>Details</strong></label>
+          <app-tinymce formControlName='details'></app-tinymce>
+        </div>
+        <div class="form-group text-right">
+          <a routerLink="/recipes" class="btn btn-secondary"><i class="fa fa-angle-left fa-fw"></i> Back to Recipes</a>
+          <button type="submit" class="btn btn-warning"><i class="fa fa-edit fa-fw"></i> Update Recipe</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -9,12 +9,13 @@ import { CategoryService } from './../../../categories/shared/services/category.
 import { RecipeService } from './../../shared/services/recipe.service';
 import { Recipe } from './../../shared/models/recipe.model';
 
+
 @Component({
-  selector: 'recipe-create',
-  templateUrl: './recipe-create.component.html',
-  styleUrls: ['./recipe-create.component.scss']
+  selector: 'recipe-update',
+  templateUrl: './recipe-update.component.html',
+  styleUrls: ['./recipe-update.component.scss']
 })
-export class RecipeCreateComponent implements OnInit {
+export class RecipeUpdateComponent implements OnInit {
 
   isLoaded: boolean = false;
   recipeId: any = null;
@@ -33,12 +34,22 @@ export class RecipeCreateComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.multiSelectSettings();
-    this.createFormBuilder(new Recipe());
     this.categories$ = this.categoryService.categories$;
-    this.categories$.subscribe(snapshots => {
-      this.isLoaded = true;
-      this.categories = snapshots.map(snapshot => {
-        return { "id": snapshot.$key, "name": snapshot.name };
+    this.activatedRoute.params.subscribe(params => {
+      this.recipeId = params['id'];
+      this.recicpe$ = this.recipeService.getRecipe(params['id']);
+      this.recicpe$.subscribe(snapshot => {
+        if (snapshot.name) {
+          this.categories$.subscribe(snapshots => {
+            this.categories = snapshots.map(snapshot => {
+              return { "id": snapshot.$key, "name": snapshot.name };
+            });
+            this.isLoaded = true;
+            this.createFormBuilder(snapshot);
+          });
+        } else {
+          this.router.navigate(['/recipes']);
+        }
       });
     });
   }
@@ -80,20 +91,9 @@ export class RecipeCreateComponent implements OnInit {
     });
   }
 
-  addRecipe(event) {
+  update(event) {
     if (this.recipeForm.valid) {
-      let newRecipe = {
-        name: this.recipeForm.value.name,
-        imageUrl: this.recipeForm.value.imageUrl,
-        shortIntro: this.recipeForm.value.shortIntro,
-        details: this.recipeForm.value.details,
-        categories: this.recipeForm.value.categories,
-        date: firebase.database.ServerValue.TIMESTAMP
-      };
-      this.recipeService.createRecipe(newRecipe).then(_ => this.router.navigate(['/recipes']))
-        .catch((err: any) => {
-          throw Error(err)
-        });
+      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value).then(_ => this.router.navigate(['/recipes']));
     } else {
       alert("Some fields are empty");
     }

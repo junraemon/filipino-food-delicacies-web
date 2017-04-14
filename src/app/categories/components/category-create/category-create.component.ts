@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CategoryService } from './../../shared/services/category.service';
+import { Category } from './../../shared/models/category.model';
 
 @Component({
   selector: 'category-create',
@@ -11,49 +12,24 @@ import { CategoryService } from './../../shared/services/category.service';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  isLoaded: boolean = false;
-  categoryId: any = null;
-  category: any;
+  categoryForm: FormGroup;
 
-  categoryForm = this.fb.group({
-    name: ["", Validators.required],
-    imageUrl: ["", Validators.required],
-    description: ["", Validators.required],
-  });
+  constructor(public fb: FormBuilder, private categoryService: CategoryService, private router: Router) {
+    this.createFormBuilder(new Category());
+  }
 
-  constructor(
-    public fb: FormBuilder,
-    private categoryService: CategoryService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.activatedRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.categoryId = params['id'];
-        this.category = this.categoryService.getCategory(params['id']);
-        this.category.subscribe(snapshot => {
-          this.isLoaded = true;
-          this.categoryForm = this.fb.group({
-            name: [snapshot.name, Validators.required],
-            imageUrl: [snapshot.imageUrl, Validators.required],
-            description: [snapshot.description, Validators.required],
-          });
-        });
-      }
-      if (this.categoryId == null) { this.isLoaded = true; }
+  ngOnInit() { }
+
+  createFormBuilder(category: Category) {
+    this.categoryForm = this.fb.group({
+      name: [category.name, Validators.required],
+      imageUrl: [category.imageUrl, Validators.required],
+      description: [category.description, Validators.required],
     });
   }
 
-  ngOnInit() {
-  }
-
   addCategory(event) {
-    if (!!this.categoryId) {
-      this.categoryService.updateCategory(this.categoryId, this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
-    } else {
-
-      this.categoryService.createCategory(this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
-    }
+    this.categoryService.createCategory(this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
   }
-
+  
 }

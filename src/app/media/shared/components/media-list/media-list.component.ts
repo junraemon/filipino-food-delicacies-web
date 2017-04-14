@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { FirebaseListObservable } from 'angularfire2';
 import { MediaService } from './../../services/media.service';
 
 @Component({
@@ -10,13 +10,13 @@ import { MediaService } from './../../services/media.service';
 })
 export class MediaListComponent implements OnInit {
 
-  medias: FirebaseListObservable<any[]>;
+  medias: Observable<any[]>;
   @Input() modalMode: boolean = false;
   @Input() selected: string = "";
   @Output() selectMedia = new EventEmitter(false);
 
   constructor(private mediaService: MediaService) {
-    this.medias = this.mediaService.listMedia();
+    this.medias = this.mediaService.listMedia().map( (arr) => { return arr.reverse(); } );;
   }
 
   ngOnInit() {

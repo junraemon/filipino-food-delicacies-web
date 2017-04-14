@@ -31,5 +31,11 @@ export class CategoryCreateComponent implements OnInit {
   addCategory(event) {
     this.categoryService.createCategory(this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
   }
-  
+
+  selectImage(media) {
+    this.categoryForm.patchValue({
+      imageUrl: media.url,
+    });
+  }
+
 }

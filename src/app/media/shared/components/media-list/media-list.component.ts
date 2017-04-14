@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { FirebaseListObservable } from 'angularfire2';
 import { MediaService } from './../../services/media.service';
@@ -9,7 +9,12 @@ import { MediaService } from './../../services/media.service';
   styleUrls: ['./media-list.component.scss']
 })
 export class MediaListComponent implements OnInit {
+
   medias: FirebaseListObservable<any[]>;
+  @Input() modalMode: boolean = false;
+  @Input() selected: string = "";
+  @Output() selectMedia = new EventEmitter(false);
+
   constructor(private mediaService: MediaService) {
     this.medias = this.mediaService.listMedia();
   }
@@ -23,6 +28,10 @@ export class MediaListComponent implements OnInit {
     if (conf) {
       this.mediaService.removeMedia(media);
     }
+  }
+
+  select(media) {
+    this.selectMedia.emit(media);
   }
 
 }

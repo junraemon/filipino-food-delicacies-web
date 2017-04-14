@@ -11,10 +11,21 @@
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Category Name" required/>
         </div>
-        <div class="form-group">
-          <label for="imageUrl">Image URL</label>
-          <input type="text" class="form-control" id="imageUrl" name="imageUrl" formControlName="imageUrl" placeholder="URL of the Image"
-            required/>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label for="imageUrl">Image URL</label>
+              <input type="text" class="form-control" id="imageUrl" name="imageUrl" formControlName="imageUrl" placeholder="URL of the Image"
+                required/>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="imageUrl">Browse Media</label>
+              <br/>
+              <media-modal-shared [modalMode]="true" [selectedMedia]="categoryForm.value.imageUrl" (selectMediaModal)="selectImage($event)"></media-modal-shared>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Description</label>

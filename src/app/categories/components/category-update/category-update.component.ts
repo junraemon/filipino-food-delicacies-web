@@ -54,4 +54,10 @@ export class CategoryUpdateComponent implements OnInit {
     this.categoryService.updateCategory(this.categoryId, this.categoryForm.value).then(_ => this.router.navigate(['/categories']));
   }
 
+  selectImage(media) {
+    this.categoryForm.patchValue({
+      imageUrl: media.url,
+    });
+  }
+
 }

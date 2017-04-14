@@ -8,3 +8,10 @@
     column-count: 5;
   }
 }
+
+.card.media:hover,
+.card.media.active {
+  border-color: #0275d8;
+  background-color: rgba(2, 117, 216, 0.2);
+  cursor: pointer;
+}

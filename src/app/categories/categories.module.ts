@@ -6,6 +6,7 @@ import { SharedModule } from './../shared/shared.module';
 import { CategoryRoutingModule, CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent, CategoryUpdateComponent } from './categories-routing.route';
 import { CategoriesSharedModule } from './shared/categories-shared.module';
 import { RecipesSharedModule } from './../recipes/shared/recipes-shared.module';
+import { MediaSharedModule } from './../media/shared/media-shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { RecipesSharedModule } from './../recipes/shared/recipes-shared.module';
     SharedModule,
     CategoryRoutingModule,
     CategoriesSharedModule,
-    RecipesSharedModule
+    RecipesSharedModule,
+    MediaSharedModule
   ],
   declarations: [CategoryListComponent, CategoryCreateComponent, CategoryDetailsComponent, CategoryUpdateComponent]
 })

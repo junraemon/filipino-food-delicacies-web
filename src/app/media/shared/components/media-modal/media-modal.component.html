@@ -1,0 +1,19 @@
+<button class="btn btn-primary" (click)="$event.preventDefault();browseImageModal.show()">Browse Image</button>
+<div bsModal #browseImageModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Select Image</h4>
+        <button type="button" class="close pull-right" (click)="browseImageModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <media-upload-shared></media-upload-shared>
+        <br/>
+        <media-list-shared [modalMode]="modalMode" (selectMedia)="selectMedia($event)" [selected]="selectedMedia"></media-list-shared>
+      </div>
+    </div>
+  </div>
+</div>

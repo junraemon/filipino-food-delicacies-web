@@ -99,4 +99,10 @@ export class RecipeCreateComponent implements OnInit {
     }
   }
 
+  selectImage(media) {
+    this.recipeForm.patchValue({
+      imageUrl: media.url,
+    });
+  }
+
 }

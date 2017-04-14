@@ -7,6 +7,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { SharedModule } from './../shared/shared.module';
 import { RecipesSharedModule } from './shared/recipes-shared.module';
 import { RecipeRoutingModule, RecipeListComponent, RecipeCreateComponent, RecipeDetailsComponent, RecipeUpdateComponent } from './recipes-routing.route';
+import { MediaSharedModule } from './../media/shared/media-shared.module';
 
 const tinymceConfig = {
   menubar: false,
@@ -25,6 +26,7 @@ const tinymceConfig = {
     MultiselectDropdownModule,
     TinymceModule.withConfig(tinymceConfig),
     SharedModule,
+    MediaSharedModule,
     RecipeRoutingModule,
     RecipesSharedModule
   ],

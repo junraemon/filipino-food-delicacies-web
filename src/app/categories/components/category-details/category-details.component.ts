@@ -40,7 +40,8 @@ export class CategoryDetailsComponent implements OnInit {
   delete(category) {
     let conf = prompt("Are you sure you want to delete this? Type CONFIRM to delete", "");
     if (conf == "CONFIRM") {
-      this.categoryService.removeCategory(category);
+      this.categoryService.removeCategory(category)
+        .then(_ => this.router.navigate(['/category']));
     }
   }
 }

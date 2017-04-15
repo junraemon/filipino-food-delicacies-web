@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { RecipeService } from './../../shared/services/recipe.service';
 
@@ -17,7 +17,8 @@ export class RecipeDetailsComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.activatedRoute.params.subscribe(params => {
       if (params['id']) {
@@ -38,7 +39,8 @@ export class RecipeDetailsComponent implements OnInit {
   delete(recipe) {
     let conf = prompt("Are you sure you want to delete this? Type CONFIRM to delete", "");
     if (conf == "CONFIRM") {
-      this.recipeService.removeRecipe(recipe);
+      this.recipeService.removeRecipe(recipe)
+        .then(_ => this.router.navigate(['/recipe']));
     }
   }
 

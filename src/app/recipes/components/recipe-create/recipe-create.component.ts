@@ -90,7 +90,7 @@ export class RecipeCreateComponent implements OnInit {
         categories: this.recipeForm.value.categories,
         date: firebase.database.ServerValue.TIMESTAMP
       };
-      this.recipeService.createRecipe(newRecipe).then(_ => this.router.navigate(['/recipes']))
+      this.recipeService.createRecipe(newRecipe).then(_ => this.router.navigate(['/recipe']))
         .catch((err: any) => {
           throw Error(err)
         });

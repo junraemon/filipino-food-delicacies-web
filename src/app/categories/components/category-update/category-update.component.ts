@@ -53,7 +53,7 @@ export class CategoryUpdateComponent implements OnInit {
   update() {
     if (this.categoryForm.valid) {
       this.categoryService.updateCategory(this.categoryId, this.categoryForm.value)
-        .then(_ => this.router.navigate(['/categories']));
+        .then(_ => this.router.navigate(['/category']));
     } else {
       alert("Some fields are empty");
     }

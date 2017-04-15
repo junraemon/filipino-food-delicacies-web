@@ -38,7 +38,7 @@ export class CategoryCreateComponent implements OnInit {
         date: firebase.database.ServerValue.TIMESTAMP
       };
       this.categoryService.createCategory(newCategory)
-        .then(_ => this.router.navigate(['/categories']));
+        .then(_ => this.router.navigate(['/category']));
     } else {
       alert("Some fields are empty");
     }

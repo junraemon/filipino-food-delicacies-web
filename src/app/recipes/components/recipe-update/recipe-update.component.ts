@@ -93,7 +93,7 @@ export class RecipeUpdateComponent implements OnInit {
 
   update(event) {
     if (this.recipeForm.valid) {
-      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value).then(_ => this.router.navigate(['/recipes']));
+      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value).then(_ => this.router.navigate(['/recipe']));
     } else {
       alert("Some fields are empty");
     }

@@ -4,7 +4,7 @@ import { AuthGuard } from './../auth/services/auth-guard.service';
 import { MediaComponent } from './components/media/media.component';
 
 const routes: Routes = [
-   { path: 'media', component: MediaComponent, canActivate: [AuthGuard] },
+   { path: '', component: MediaComponent, canActivate: [AuthGuard] },
 ];
 
 export const MediaRoutingModule = RouterModule.forChild(routes);

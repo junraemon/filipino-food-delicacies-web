@@ -3,7 +3,7 @@
 </div>
 <div class="container" *ngIf="isLoaded">
   <div class="text-right">
-    <a routerLink="/recipes" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
+    <a routerLink="/recipe" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
   </div>
   <br/>
   <div class="card">
@@ -22,7 +22,7 @@
       <p class="card-text" [innerHtml]="recipe.details"></p>
     </div>
     <div class="card-block text-right">
-      <a routerLink="/recipes" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
+      <a routerLink="/recipe" class="btn btn-primary"><i class="fa fa-angle-left fa-fw"></i> back</a>
       <a routerLink="/recipe/edit/{{recipe.$key}}" class="btn btn-warning btn-small"><i class="fa fa-edit fa-fw"></i> edit</a>
       <button (click)="delete(recipe)" class="btn btn-danger btn-small"><i class="fa fa-trash fa-fw"></i> delete</button>
     </div>

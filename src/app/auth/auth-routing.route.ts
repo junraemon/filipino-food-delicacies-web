@@ -6,7 +6,7 @@ import { UnauthGuard } from './services/unauth-guard.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 
 const routes: Routes = [
-   { path: 'sign-in', component: SignInComponent, canActivate: [UnauthGuard] }
+   { path: '', component: SignInComponent, canActivate: [UnauthGuard] }
 ];
 
 export const AuthRoutingModule = RouterModule.forChild(routes);

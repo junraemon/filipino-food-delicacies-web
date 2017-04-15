@@ -7,12 +7,12 @@ import { CategoryUpdateComponent } from './components/category-update/category-u
 import { AuthGuard } from './../auth/services/auth-guard.service';
 
 const routes: Routes = [
-   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard] },
-   { path: 'category/add', component: CategoryCreateComponent, canActivate: [AuthGuard] },
-   { path: 'category/edit/:id', component: CategoryUpdateComponent, canActivate: [AuthGuard] },
-   { path: 'category/details/:id', component: CategoryDetailsComponent, canActivate: [AuthGuard] },
-   { path: 'category/edit', redirectTo: 'categories' },
-   { path: 'category/details', redirectTo: 'categories' },
+   { path: '', component: CategoryListComponent, canActivate: [AuthGuard] },
+   { path: 'add', component: CategoryCreateComponent, canActivate: [AuthGuard] },
+   { path: 'edit/:id', component: CategoryUpdateComponent, canActivate: [AuthGuard] },
+   { path: 'details/:id', component: CategoryDetailsComponent, canActivate: [AuthGuard] },
+   { path: 'edit', redirectTo: 'categories' },
+   { path: 'details', redirectTo: 'categories' },
 ];
 
 export const CategoryRoutingModule = RouterModule.forChild(routes);

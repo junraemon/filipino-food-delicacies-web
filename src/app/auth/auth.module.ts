@@ -11,7 +11,7 @@ import {
 } from './auth-routing.route';
 
 const routes: Routes = [
-  { path: 'sign-in', component: SignInComponent, canActivate: [UnauthGuard] }
+  { path: '', component: SignInComponent, canActivate: [UnauthGuard] }
 ];
 
 @NgModule({
@@ -19,11 +19,6 @@ const routes: Routes = [
     CommonModule,
     AuthRoutingModule
   ],
-  declarations: [SignInComponent],
-  providers: [
-    AuthGuard,
-    AuthService,
-    UnauthGuard
-  ]
+  declarations: [SignInComponent]
 })
 export class AuthModule { }

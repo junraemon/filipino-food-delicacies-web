@@ -1,5 +1,3 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2'
 
 const firebaseConfig = {
@@ -15,11 +13,4 @@ const firebaseAuthConfig = {
   method: AuthMethods.Redirect
 };
 
-@NgModule({
-  imports: [
-    CommonModule,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
-  ],
-  declarations: []
-})
-export class FirebaseModule { }
+export const FirebaseModule = AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig);

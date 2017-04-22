@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TinymceModule } from 'ng2-tinymce-alt';
+import { TinymceModule } from 'angular2-tinymce';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { SharedModule } from './../shared/shared.module';

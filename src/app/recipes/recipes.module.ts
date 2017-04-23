@@ -15,7 +15,8 @@ const tinymceConfig = {
   plugins: ["autoresize"],
   force_p_newlines: false,
   forced_root_block: '',
-  toolbar: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify'
+  toolbar: 'undo redo | styleselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify',
+  fontsize_formats: '8px 9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 31px 32px 33px 34px 35px 36px'
 };
 
 @NgModule({

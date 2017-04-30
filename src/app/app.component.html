@@ -1,5 +1,8 @@
 <core-app-header [authenticated]="auth.authenticated" (signOut)="signOut()" (signIn)="signIn()" [currentRoute]="currentRoute"></core-app-header>
 
 <div class="container-fluid">
+  <div *ngIf="loading">
+    <div class="loading">Loading&#8230;</div>
+  </div>
   <router-outlet></router-outlet>
 </div>

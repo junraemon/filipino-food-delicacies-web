@@ -18,7 +18,7 @@ import { AuthService } from './auth/services/auth.service';
 export class AppComponent {
   currentRoute: any;
   loading: boolean = true;
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(public auth: AuthService, private router: Router) {
     router.events.subscribe((event: any) => {
       this.currentRoute = event.url;
       this.navigationInterceptor(event);

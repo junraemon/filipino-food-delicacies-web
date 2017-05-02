@@ -4,9 +4,9 @@
   </div>
   <div class="col-md-4">
     <div class="input-group">
-      <input type="text" class="form-control" [(ngModel)]="searchString" (ngModelChange)="search()" placeholder="Search  a recipe...">
+      <input type="text" class="form-control" [(ngModel)]="searchString" (ngModelChange)="search($event)" placeholder="Search  a recipe...">
       <span class="input-group-btn">
-        <button class="btn btn-primary" (click)="search()" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+        <button class="btn btn-primary" (click)="search($event)" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
       </span>
     </div>
   </div>

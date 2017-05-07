@@ -1,6 +1,6 @@
 <core-app-header [authenticated]="auth.authenticated" (signOut)="signOut()" (signIn)="signIn()" [currentRoute]="currentRoute"></core-app-header>
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top:55px;">
   <div *ngIf="loading">
     <div class="loading">Loading&#8230;</div>
   </div>

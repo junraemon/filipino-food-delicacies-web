@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import * as firebase from "firebase";
 
 import { CategoryService } from './../../../categories/shared/services/category.service';
@@ -34,24 +35,26 @@ export class RecipeUpdateComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.multiSelectSettings();
-    this.categories$ = this.categoryService.categories$;
     this.activatedRoute.params.subscribe(params => {
       this.recipeId = params['id'];
-      this.recicpe$ = this.recipeService.getRecipe(params['id']);
-      this.recicpe$.subscribe(snapshot => {
-        if (snapshot.name) {
-          this.categories$.subscribe(snapshots => {
-            this.categories = snapshots.map(snapshot => {
-              return { "id": snapshot.$key, "name": snapshot.name };
-            });
-            this.isLoaded = true;
-            this.createFormBuilder(snapshot);
+      Observable.combineLatest(
+        this.categoryService.categories$,
+        this.recipeService.getRecipe(params['id'])
+      ).subscribe(data => {
+        let categories = data[0];
+        let currentRecipe = data[1];
+        if (currentRecipe.name) {
+          this.categories = categories.map(snapshot => {
+            return { "id": snapshot.$key, "name": snapshot.name };
           });
+          this.isLoaded = true;
+          this.createFormBuilder(currentRecipe);
         } else {
           this.router.navigate(['/recipes']);
         }
       });
     });
+
   }
 
   ngOnInit() { }

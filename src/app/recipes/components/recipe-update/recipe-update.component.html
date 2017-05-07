@@ -18,7 +18,9 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="name" class="form-label"><strong>Categories</strong></label>
-              <ss-multiselect-dropdown [options]="categories" [texts]="myTexts" [settings]="mySettings" formControlName="categories" required></ss-multiselect-dropdown>
+              <div>
+                <ss-multiselect-dropdown [options]="categories" [texts]="myTexts" [settings]="mySettings" formControlName="categories" required></ss-multiselect-dropdown>
+              </div>
             </div>
           </div>
         </div>

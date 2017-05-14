@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { MediaUploadComponent } from './components/media-upload/media-upload.component';
 import { MediaListComponent } from './components/media-list/media-list.component';

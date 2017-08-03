@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/merge';
@@ -12,8 +12,8 @@ export class CategoryService {
   private path = `/categories`;
   public categories$: FirebaseListObservable<Category[]>;
 
-  constructor(private af: AngularFire) {
-    this.categories$ = af.database.list(this.path, {
+  constructor(private af: AngularFireDatabase) {
+    this.categories$ = af.list(this.path, {
       query: {
         orderByChild: 'date',
       }
@@ -21,7 +21,7 @@ export class CategoryService {
   }
 
   getCategory(id) {
-    return this.af.database.object(this.path + "/" + id);
+    return this.af.object(this.path + "/" + id);
   }
 
   createCategory(category: Category): firebase.Promise<any> {

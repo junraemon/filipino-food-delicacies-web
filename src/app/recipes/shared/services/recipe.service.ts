@@ -2,7 +2,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/switchMap';
 
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
@@ -13,9 +13,9 @@ export class RecipeService {
   public recipes$: FirebaseListObservable<Recipe[]>;
   private path = `/recipes`;
 
-  constructor(private af: AngularFire) {
+  constructor(private af: AngularFireDatabase) {
 
-    this.recipes$ = af.database.list(this.path, {
+    this.recipes$ = af.list(this.path, {
       query: {
         orderByChild: 'date',
       }
@@ -23,7 +23,7 @@ export class RecipeService {
   }
 
   getRecipe(id) {
-    return this.af.database.object(this.path + "/" + id);
+    return this.af.object(this.path + "/" + id);
   }
 
   createRecipe(recipe: Recipe): firebase.Promise<any> {

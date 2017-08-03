@@ -1,4 +1,6 @@
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2'
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCVuZ7nkQSSxfmPSqWxx_oVS-VVHWeYOHY",
@@ -8,9 +10,5 @@ const firebaseConfig = {
   messagingSenderId: "877981756963"
 };
 
-const firebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
-};
-
-export const FirebaseModule = AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig);
+export const FirebaseModule = AngularFireModule.initializeApp(firebaseConfig);
+export { AngularFireDatabaseModule, AngularFireAuthModule }

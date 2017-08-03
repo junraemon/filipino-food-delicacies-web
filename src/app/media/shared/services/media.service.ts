@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { FileItem } from './../models/file-item.model';
 import * as firebase from 'firebase';
 import * as _ from 'lodash';
@@ -10,9 +10,9 @@ export class MediaService {
   private IMAGES_FOLDER: string = 'images';
   mediaList$: FirebaseListObservable<any[]>;
   storageRef: any;
-  constructor(public af: AngularFire) {
+  constructor(public af: AngularFireDatabase) {
     this.storageRef = firebase.storage().ref();
-    this.mediaList$ = this.af.database.list(`/${this.IMAGES_FOLDER}`, {
+    this.mediaList$ = this.af.list(`/${this.IMAGES_FOLDER}`, {
       query: {
         orderByChild: 'date',
       }
@@ -38,9 +38,9 @@ export class MediaService {
       let uploadTask: firebase.storage.UploadTask = this.storageRef.child(`${this.IMAGES_FOLDER}/${item.file.name}`).put(item.file);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        (snapshot) => item.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        (snapshot: any) => item.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
         (error) => { },
-        () => {
+        (): undefined => {
           item.url = uploadTask.snapshot.downloadURL;
           item.isUploading = false;
           this.saveImage({
@@ -48,6 +48,7 @@ export class MediaService {
             url: item.url,
             date: firebase.database.ServerValue.TIMESTAMP
           });
+          return;
         }
       );
 
@@ -56,7 +57,7 @@ export class MediaService {
   }
 
   private saveImage(image: any) {
-    this.af.database.list(`/${this.IMAGES_FOLDER}`).push(image);
+    this.af.list(`/${this.IMAGES_FOLDER}`).push(image);
   }
 
 }

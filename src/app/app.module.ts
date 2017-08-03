@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from './core/core.module';
-import { FirebaseModule } from './firebase/firebase.module';
+import { FirebaseModule, AngularFireDatabaseModule, AngularFireAuthModule } from './firebase/firebase.module';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -20,7 +20,7 @@ import { UnauthGuard } from './auth/services/unauth-guard.service';
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule, routing,
-    CoreModule, FirebaseModule,
+    CoreModule, FirebaseModule, AngularFireDatabaseModule, AngularFireAuthModule
   ],
   bootstrap: [AppComponent],
   providers: [AuthService, AuthGuard, UnauthGuard]
